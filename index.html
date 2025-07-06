@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Venta de Autos - Estilo Instagram</title>
+    <!-- Carga de Tailwind CSS para estilos rápidos y responsivos -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Estilos personalizados para la fuente Inter */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f2f5; /* Color de fondo similar a Instagram */
+        }
+        /* Ocultar la barra de desplazamiento para una experiencia más limpia */
+        body::-webkit-scrollbar {
+            display: none;
+        }
+        body {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+    </style>
+</head>
+<body class="flex justify-center min-h-screen py-8">
+    <div class="w-full max-w-md bg-white shadow-lg rounded-lg overflow-hidden">
+        <!-- Encabezado de la aplicación -->
+        <header class="bg-white border-b border-gray-200 p-4 flex justify-center items-center sticky top-0 z-10">
+            <h1 class="text-2xl font-bold text-gray-800">Autos en Venta</h1>
+        </header>
+
+        <!-- Contenedor principal para los posts de autos -->
+        <main id="car-feed" class="p-4 space-y-6">
+            <!-- Los posts de autos se cargarán aquí con JavaScript -->
+            <div id="loading-message" class="text-center text-gray-500">Cargando autos...</div>
+        </main>
+    </div>
+
+    <script>
+        // Función para crear un post de auto
+        function createCarPost(car) {
+            // Crea el elemento div principal para el post del auto
+            const postDiv = document.createElement('div');
+            postDiv.className = 'bg-white rounded-lg shadow-md overflow-hidden'; // Clases de Tailwind para el estilo
+
+            // Crea la imagen del auto
+            const img = document.createElement('img');
+            img.src = car.imageUrl;
+            img.alt = `Imagen de ${car.description.substring(0, 20)}...`; // Alt text descriptivo
+            img.className = 'w-full h-auto object-cover rounded-t-lg'; // Clases de Tailwind para la imagen
+            // Manejo de errores para la carga de la imagen
+            img.onerror = function() {
+                // Si la imagen no se carga (por ejemplo, ruta incorrecta o archivo no encontrado),
+                // muestra una imagen de placeholder.
+                this.src = `https://placehold.co/600x400/CCCCCC/000000?text=Imagen+no+disponible`;
+                this.alt = 'Imagen no disponible';
+            };
+
+            // Crea el contenedor para la descripción y el precio
+            const contentDiv = document.createElement('div');
+            contentDiv.className = 'p-4'; // Padding para el contenido
+
+            // Crea el párrafo para la descripción
+            const descriptionP = document.createElement('p');
+            descriptionP.className = 'text-gray-700 text-base mb-2'; // Clases de Tailwind para la descripción
+            descriptionP.textContent = car.description;
+
+            // Crea el párrafo para el precio
+            const priceP = document.createElement('p');
+            priceP.className = 'text-lg font-semibold text-blue-600'; // Clases de Tailwind para el precio
+            priceP.textContent = `Precio: ${car.price}`;
+
+            // Añade la imagen, descripción y precio al contenedor de contenido
+            contentDiv.appendChild(descriptionP);
+            contentDiv.appendChild(priceP);
+
+            // Añade la imagen y el contenedor de contenido al div principal del post
+            postDiv.appendChild(img);
+            postDiv.appendChild(contentDiv);
+
+            return postDiv;
+        }
+
+        // Obtiene el contenedor donde se añadirán los posts
+        const carFeed = document.getElementById('car-feed');
+        const loadingMessage = document.getElementById('loading-message');
+
+        // Función asíncrona para cargar los datos de los autos
+        async function loadCars() {
+            try {
+                // Muestra el mensaje de carga
+                loadingMessage.style.display = 'block';
+                carFeed.innerHTML = ''; // Limpia cualquier contenido previo
+
+                // Realiza la solicitud para obtener el archivo cars.json
+                // Se ha cambiado 'cars.json' a './cars.json' para una resolución de URL más robusta.
+                const response = await fetch('./cars.json');
+
+                // Verifica si la respuesta fue exitosa
+                if (!response.ok) {
+                    throw new new Error(`Error HTTP: ${response.status}`);
+                }
+
+                // Parsea la respuesta como JSON
+                const cars = await response.json();
+
+                // Oculta el mensaje de carga
+                loadingMessage.style.display = 'none';
+
+                // Itera sobre el array de autos y añade cada post al feed
+                if (cars && cars.length > 0) {
+                    cars.forEach(car => {
+                        const post = createCarPost(car);
+                        carFeed.appendChild(post);
+                    });
+                } else {
+                    carFeed.innerHTML = '<p class="text-center text-gray-500">No hay autos disponibles en este momento.</p>';
+                }
+
+            } catch (error) {
+                console.error("Error al cargar los autos:", error);
+                loadingMessage.style.display = 'none';
+                carFeed.innerHTML = '<p class="text-center text-red-500">Error al cargar los autos. Por favor, inténtelo de nuevo más tarde.</p>';
+            }
+        }
+
+        // Llama a la función para cargar los autos cuando la página se carga
+        loadCars();
+    </script>
+</body>
+</html>

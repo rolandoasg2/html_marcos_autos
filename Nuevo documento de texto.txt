@@ -1,0 +1,18 @@
+mi-app-autos/
+├── index.html
+└── src/
+    └── assets/
+        └── images/
+            └── autos/
+                ├── auto1/
+                │   ├── foto1.jpg
+                │   └── foto2.jpg
+                └── auto2/
+                    ├── foto1.jpg
+                    └── foto2.jpg
+                ... (y así sucesivamente para cada auto)
+				
+				
+				python -m http.server 8000
+				
+				http://localhost:8000/

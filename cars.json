@@ -1,0 +1,38 @@
+[
+    {
+        "id": 1,
+        "imageUrl": "src/assets/images/autos/auto1/foto1.jpg",
+        "description": "Un impresionante deportivo rojo con motor V8, perfecto para los amantes de la velocidad. Baja kilometraje y en excelente estado. ¡No te lo pierdas!",
+        "price": "$45,000"
+    },
+    {
+        "id": 2,
+        "imageUrl": "src/assets/images/autos/auto2/foto1.jpg",
+        "description": "Espaciosa SUV familiar, ideal para viajes largos y la vida diaria. Cómoda, segura y con gran capacidad de carga. Mantenimientos al día.",
+        "price": "$32,500"
+    },
+    {
+        "id": 3,
+        "imageUrl": "src/assets/images/autos/auto3/foto1.jpg",
+        "description": "Un clásico restaurado con cariño, color azul vibrante y motor original. Una verdadera joya para coleccionistas. Detalles únicos.",
+        "price": "$58,000"
+    },
+    {
+        "id": 4,
+        "imageUrl": "src/assets/images/autos/auto4/foto1.jpg",
+        "description": "Compacto y eficiente, ideal para la ciudad. Bajo consumo de combustible y fácil de estacionar. Perfecto para el día a día.",
+        "price": "$18,000"
+    },
+    {
+        "id": 5,
+        "imageUrl": "src/assets/images/autos/auto5/foto1.jpg",
+        "description": "Pickup robusta y potente, lista para cualquier trabajo o aventura. Gran capacidad de remolque y tracción 4x4. Lista para la acción.",
+        "price": "$38,900"
+    },
+    {
+        "id": 6,
+        "imageUrl": "src/assets/images/autos/auto6/foto1.jpg",
+        "description": "Sedán elegante y cómodo, con acabados de lujo y tecnología avanzada. Ideal para viajes de negocios o placer. Confort y estilo.",
+        "price": "$29,900"
+    }
+]
