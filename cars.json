@@ -34,5 +34,11 @@
         "imageUrl": "src/assets/images/autos/auto6/foto1.jpg",
         "description": "Sedán elegante y cómodo, con acabados de lujo y tecnología avanzada. Ideal para viajes de negocios o placer. Confort y estilo.",
         "price": "$29,900"
+    },
+    {
+        "id": 7,
+        "imageUrl": "src/assets/images/autos/auto7/foto1.jpg",
+        "description": "Suzuki Maruti elegante y cómodo, con descuento ahora hoy mismo!!!! llama ya llama ya.",
+        "price": "$3.000.000"
     }
 ]

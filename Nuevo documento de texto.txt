@@ -16,3 +16,22 @@ mi-app-autos/
 				python -m http.server 8000
 				
 				http://localhost:8000/
+				
+				En Windows/Linux para refrescar e ignora el cache: Ctrl + Shift + R
+				
+				
+echo "# html_marcos_autos" >> README.md
+git init
+git add README.md
+git add .
+git commit -m "Initial commit: Car sales app with JSON data"
+git branch -M main
+git remote add origin https://github.com/rolandoasg2/html_marcos_autos.git
+git push -u origin main
+
+https://rolandoasg2.github.io/html_marcos_autos/
+
+url despliegue online: https://rolandoasg2.github.io/html_marcos_autos/
+
+
+https://vercel.com/rolandoasg2s-projects/html-marcos-autos/HGyhBnhaWeLXkx8hkrrjviXGiWn3
